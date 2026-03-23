@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # 拉取所有历史记录
-          ref: main  # 明确指定拉取main分支
+          ref: master  # 明确指定拉取master分支
           persist-credentials: true  # 保留凭证用于推送
 
       # 2. 添加原仓库为上游仓库（增加容错）
@@ -29,15 +29,15 @@ jobs:
       - name: 合并更新
         run: |
           # 确保切换到正确分支，先检查分支是否存在
-          git checkout main || git checkout -b main
-          # 拉取本地main分支最新代码（防止本地落后）
-          git pull origin main --no-edit
-          # 合并上游main分支，若有冲突则自动放弃合并
-          git merge upstream/main --no-edit || (echo "合并冲突，终止同步" && exit 0)
+          git checkout master || git checkout -b master
+          # 拉取本地master分支最新代码（防止本地落后）
+          git pull origin master --no-edit
+          # 合并上游master分支，若有冲突则自动放弃合并
+          git merge upstream/master --no-edit || (echo "合并冲突，终止同步" && exit 0)
 
       # 4. 推送更新到你的Fork仓库
       - name: 推送更新
         run: |
-          git push origin main
+          git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
