@@ -30,9 +30,9 @@ jobs:
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
         with:
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
-          target_sync_branch: main   # 你的仓库目标分支，若为 master 请修改
+          target_sync_branch: master   # 你的仓库目标分支，若为 master 请修改
           upstream_sync_repo: Guovin/iptv-api   # 上游仓库（所有者/仓库名）
-          upstream_sync_branch: main        # 上游仓库的分支，若为 master 请修改
+          upstream_sync_branch: master        # 上游仓库的分支，若为 master 请修改
           test_mode: false
 
       - name: 同步结果反馈
